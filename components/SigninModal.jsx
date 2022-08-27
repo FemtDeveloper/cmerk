@@ -163,7 +163,7 @@ export const SigninModal = () => {
                     <Typography sx={{ ml: 2 }}>Instagram</Typography>
                   </Button>
                 </Grid> */}
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <Button
                     variant="contained"
                     fullWidth
@@ -175,7 +175,7 @@ export const SigninModal = () => {
                       Facebook
                     </Typography>
                   </Button>
-                </Grid>
+                </Grid> */}
               </Grid>
               {/* <Grid container direction="row" justifyContent="end">
                 <NextLink href="/auth/register" passHref>
