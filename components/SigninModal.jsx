@@ -83,9 +83,9 @@ export const SigninModal = () => {
           }}
         >
           <Grid container justifyContent={"center"}>
-            <Typography variant="h2">Madrugón Mayorista</Typography>
-            <Grid item textAlign={"center"} mt={2}>
-              <Typography variant="h4">
+            <Typography variant="h2">Supermercado C-Merk</Typography>
+            <Grid item textAlign={"center"} xs={12}>
+              <Typography variant="h4" mt={2}>
                 Te invita a ingresar a tu cuenta
               </Typography>
             </Grid>
@@ -139,7 +139,7 @@ export const SigninModal = () => {
                     Login
                   </Button>
                 </Grid> */}
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
                   <Button
                     variant="contained"
                     fullWidth
