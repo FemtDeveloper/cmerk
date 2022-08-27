@@ -82,7 +82,7 @@ export const Footer = () => {
           width="25px"
           height="25px"
         /> */}
-        <ListItemText primary={"Contacto"} />
+        <ListItemText primary={"Dirección"} />
       </ListItem>
     </Grid>
     // </BottomNavigation>
