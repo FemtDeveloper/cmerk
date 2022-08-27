@@ -70,7 +70,7 @@ export const Navbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
               variant="h3"
               color="info"
             >
-              Merk
+              Merca
             </Typography>
           </Link>
         </NextLink>
