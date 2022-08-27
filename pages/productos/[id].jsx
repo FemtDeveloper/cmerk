@@ -73,10 +73,13 @@ const SingleProduct = (product = null) => {
               xs={12}
               sm={5}
               sx={{ flexGrow: 1, justifyContent: { sm: "center" } }}
-              paddingTop="20px"
-              paddingLeft={2}
+              padding={2}
             >
-              <Box display={"flex"} flexDirection="column" marginTop={5}>
+              <Box
+                display={"flex"}
+                flexDirection="column"
+                sx={{ mt: { xs: 0, sm: 5 } }}
+              >
                 <Typography
                   variant="h2"
                   sx={{

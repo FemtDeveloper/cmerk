@@ -1,11 +1,15 @@
-import { ManOutlined } from "@mui/icons-material";
+import RestoreIcon from "@mui/icons-material/Restore";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import ArchiveIcon from "@mui/icons-material/Archive";
 import {
   AppBar,
   BottomNavigation,
+  BottomNavigationAction,
   Grid,
   ListItem,
   ListItemIcon,
   ListItemText,
+  Paper,
   Toolbar,
 } from "@mui/material";
 import Image from "next/image";
@@ -17,74 +21,15 @@ export const Footer = () => {
     push(url);
   };
   return (
-    // <BottomNavigation>
-    <Grid
-      container
-      width="100%"
-      justifyContent={"space-around"}
-      // position="fixed"
-      sx={{
-        backgroundColor: "#DDF0FF",
-        color: "white",
-      }}
+    <Paper
+      sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+      elevation={3}
     >
-      <ListItem
-        button
-        sx={{ width: "70px", flexDirection: "column", color: "white" }}
-        onClick={() => navigateTo("/categoria/granos")}
-      >
-        {/* <Image
-          src="/pants.png"
-          alt="Categoria granos"
-          layout="fixed"
-          width="25px"
-          height="25px"
-        /> */}
-        <ListItemText primary={"Objetivos"} sx={{ color: "white" }} />
-      </ListItem>
-      <ListItem
-        button
-        sx={{ width: "70px", flexDirection: "column" }}
-        onClick={() => navigateTo("/categoria/camisetas")}
-      >
-        {/* <Image
-          src="/t-shirts.png"
-          alt="Categoria granos"
-          layout="fixed"
-          width="25px"
-          height="25px"
-        /> */}
-        <ListItemText primary={"Nosotros"} />
-      </ListItem>
-      <ListItem
-        button
-        sx={{ width: "70px", flexDirection: "column" }}
-        onClick={() => navigateTo("/categoria/blusas")}
-      >
-        {/* <Image
-          src="/blouses.png"
-          alt="Categoria Blusas"
-          layout="fixed"
-          width="25px"
-          height="25px"
-        /> */}
-        <ListItemText primary={"Ubicación"} />
-      </ListItem>
-      <ListItem
-        button
-        sx={{ width: "70px", flexDirection: "column" }}
-        onClick={() => navigateTo("/categoria/mas")}
-      >
-        {/* <Image
-          src="/plus.png"
-          alt="Categoria Blusas"
-          layout="fixed"
-          width="25px"
-          height="25px"
-        /> */}
-        <ListItemText primary={"Dirección"} />
-      </ListItem>
-    </Grid>
-    // </BottomNavigation>
+      <BottomNavigation showLabels>
+        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+        <BottomNavigationAction label="Archive" icon={<ArchiveIcon />} />
+      </BottomNavigation>
+    </Paper>
   );
 };
