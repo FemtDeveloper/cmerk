@@ -119,11 +119,7 @@ const CardProduct = ({
         </IconButton>
 
         <List sx={{ paddingX: "20px" }}>
-          <Typography
-            variant="h4"
-            sx={{ mr: 2, mb: 2, fontWeight: 600 }}
-            display="flex"
-          >
+          <Typography variant="h4" sx={{ fontWeight: 600 }} display="flex">
             Precio:{"  "}
             {new Intl.NumberFormat("en-US", {
               style: "currency",
@@ -151,7 +147,7 @@ const CardProduct = ({
           <span>
             Marca: {"  "}
             <NextLink href={`/marcas/${brand}`} passHref>
-              <Link color={"info.main"} fontWeight={500} underline="always">
+              <Link color={"#160981"} fontWeight={550} underline="always">
                 {brand}
               </Link>
             </NextLink>

@@ -98,10 +98,10 @@ const SingleProduct = (product = null) => {
                   alignContent="flex-start"
                 >
                   <Typography>
-                    <b> Categoría: </b> {product?.categoria}
-                  </Typography>
-                  <Typography>
-                    <b> Precio/unidad: {"   "} </b>{" "}
+                    <b>
+                      {" "}
+                      Precio/{product.cantidad} {product.medidas} {"   "}{" "}
+                    </b>{" "}
                     {new Intl.NumberFormat("en-US", {
                       style: "currency",
                       currency: "USD",
@@ -112,6 +112,9 @@ const SingleProduct = (product = null) => {
                   <Typography>
                     <b>Descripción: </b>
                     {product?.description ?? ""}
+                  </Typography>
+                  <Typography>
+                    <b> Categoría: </b> {product?.categoria}
                   </Typography>
                 </Grid>
               </Box>

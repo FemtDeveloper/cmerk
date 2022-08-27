@@ -12,7 +12,7 @@ const AllProducts = ({ products = [] }) => {
       <span>No hay productos para mostrar en el momento</span>
     </Typography>
   ) : (
-    <Grid container spacing={4} minHeight="72vh">
+    <Grid container spacing={4} minHeight="72vh" mb={8}>
       {products.map((product) => (
         <CardProduct
           key={product.id}
