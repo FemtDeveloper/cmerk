@@ -2,7 +2,7 @@ import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "@mui/material";
-import { lightTheme, yellowTheme, pinkTheme } from "themes";
+import { lightTheme, yellowTheme, pinkTheme, blueTheme } from "themes";
 import { UiProvider } from "context";
 import { AuthProvider } from "context/auth";
 import "../styles/globals.css";
@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         <SessionProvider session={session}>
           <AuthProvider>
             <UiProvider>
-              <ThemeProvider theme={pinkTheme}>
+              <ThemeProvider theme={blueTheme}>
                 <Component {...pageProps} />
                 <Toaster />
               </ThemeProvider>
