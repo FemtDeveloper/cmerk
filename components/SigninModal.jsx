@@ -83,7 +83,9 @@ export const SigninModal = () => {
           }}
         >
           <Grid container justifyContent={"center"}>
-            <Typography variant="h2">Supermercado C-Merk</Typography>
+            <Typography variant="h2" textAlign={"center"}>
+              Supermercado C-Merk
+            </Typography>
             <Grid item textAlign={"center"} xs={12}>
               <Typography variant="h4" mt={2}>
                 Te invita a ingresar a tu cuenta

@@ -11,7 +11,7 @@ export const ProductSlideshow = ({ images }) => {
     //     return (
     <Container
       key={images[0]}
-      sx={{ height: { xs: "420px", sm: "540px" } }}
+      sx={{ height: { xs: "380px", sm: "540px" } }}
       style={{
         minWidth: "260px",
         minHeight: "442px",
