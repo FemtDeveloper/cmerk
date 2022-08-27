@@ -24,7 +24,7 @@ const Layout = ({
 
         <meta name="og:title" content={title} />
         <meta name="og:description" content={pageDescription} />
-        <meta name="theme-color" content="#ed47dd"></meta>
+        <meta name="theme-color" content="#4b72ff"></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
