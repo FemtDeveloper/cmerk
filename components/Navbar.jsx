@@ -46,7 +46,7 @@ export const Navbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
   };
 
   return (
-    <AppBar>
+    <AppBar position="static">
       <Toolbar>
         <NextLink href="/" passHref>
           <Link display="flex" alignItems="center">

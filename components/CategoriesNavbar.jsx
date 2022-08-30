@@ -9,6 +9,8 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/router";
 
+const categoryList = ["Granos", "Lacteos", "Despensa", "+Mas"];
+
 export const CategoriesNavbar = () => {
   const { push } = useRouter();
   const navigateTo = (url) => {
@@ -22,7 +24,7 @@ export const CategoriesNavbar = () => {
       justifyContent={"center"}
       sx={{
         boxShadow: "0px 9px 14px -6px rgba(168,168,168,0.75)",
-        paddingTop: "60px",
+        // marginTop: "30px",
         backgroundColor: "#f8f8f8",
       }}
     >
@@ -33,20 +35,24 @@ export const CategoriesNavbar = () => {
           justifyContent: "space-around",
         }}
       >
-        <ListItem
-          button
-          sx={{ width: "70px", flexDirection: "column" }}
-          onClick={() => navigateTo("/categoria/granos")}
-        >
-          <Image
+        {categoryList.map((category) => (
+          <ListItem
+            button
+            onClick={() => navigateTo(`/categoria/${category.toLowerCase()}`)}
+            key={category}
+          >
+            <ListItemText primary={category} />
+          </ListItem>
+        ))}
+
+        {/* <Image
             src="/grain.png"
             alt="Categoria granos"
             layout="fixed"
             width="50px"
             height="50px"
-          />
-          <ListItemText primary={"Granos"} />
-        </ListItem>
+          /> */}
+        {/*           
         <ListItem
           button
           sx={{ width: "70px", flexDirection: "column" }}
@@ -88,7 +94,7 @@ export const CategoriesNavbar = () => {
             height="50px"
           />
           <ListItemText primary={"más"} color={"info"} />
-        </ListItem>
+        </ListItem> */}
       </Toolbar>
     </Grid>
   );

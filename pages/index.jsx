@@ -6,6 +6,7 @@ import { prisma } from "@/lib/prisma";
 import AllProducts from "@/components/AllProducts";
 
 import { FullScreenLoading } from "@/components/FullScreenLoading";
+import { SalesBar } from "@/components/SalesBar";
 
 export async function getStaticProps() {
   const products = await prisma.product.findMany();
@@ -35,6 +36,7 @@ export default function Home({ products = [] }) {
       <Typography variant="h2" sx={{ mb: 1 }}>
         Los mejores precios en tu mercado
       </Typography>
+
       <Grid container marginTop={6}>
         <AllProducts products={products} />
       </Grid>

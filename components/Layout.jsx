@@ -7,12 +7,13 @@ import { UiContext } from "context";
 import { SigninModal } from "./SigninModal";
 import { CategoriesNavbar } from "./CategoriesNavbar";
 import { Footer } from "./Footer";
+import { SalesBar } from "./SalesBar";
 
 const Layout = ({
   children = null,
   title = "",
   pageDescription = "",
-  gender = "",
+  isPromo = false,
 }) => {
   const {} = useContext(UiContext);
 
@@ -28,9 +29,11 @@ const Layout = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <nav>
+      {!isPromo && <SalesBar />}
+      <nav className="navbar-sticky" style={{ position: "sticky" }}>
         <Navbar />
       </nav>
+
       <CategoriesNavbar />
 
       <SideMenu />

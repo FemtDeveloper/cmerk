@@ -12,7 +12,7 @@ import {
   List,
   Typography,
 } from "@mui/material";
-import { FavoriteOutlined, WhatsApp } from "@mui/icons-material";
+import { FavoriteOutlined } from "@mui/icons-material";
 import { tesloApi } from "api";
 import { useSelector } from "react-redux";
 
@@ -34,6 +34,8 @@ const CardProduct = ({
   const { favoriteProducts, phoneNumber, role } = useSelector(
     (state) => state.user
   );
+
+  console.log(role);
 
   useEffect(() => {
     favoriteProducts.map((fav) => {
@@ -60,11 +62,11 @@ const CardProduct = ({
   };
 
   const onDeleteProduct = () => {
-    if (role === "admin") {
-      console.log("deleting");
-    }
+    console.log("deleting");
   };
-
+  const onEditButton = () => {
+    console.log("editing");
+  };
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card
@@ -111,7 +113,7 @@ const CardProduct = ({
             position: "absolute",
             right: "2px",
             cursor: "pointer",
-            zIndex: 99,
+            zIndex: 20,
           }}
           onClick={onFavorite}
         >
@@ -162,12 +164,16 @@ const CardProduct = ({
           </a> */}
         </Typography>
         {role === "admin" && (
-          <Typography textAlign={"end"} mb={2} mr={2}>
-            <span
-              onClick={onDeleteProduct}
-              className="delete-button"
-              style={{}}
-            >
+          <Typography
+            display={"flex"}
+            justifyContent="space-around"
+            mb={2}
+            mr={2}
+          >
+            <span onClick={onEditButton} className="edit-button">
+              Editar producto
+            </span>
+            <span onClick={onDeleteProduct} className="delete-button">
               Eliminar
             </span>
           </Typography>

@@ -21,15 +21,18 @@ export const Footer = () => {
     push(url);
   };
   return (
-    <Paper
-      sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-      elevation={3}
-    >
-      <BottomNavigation showLabels>
-        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+    <Paper sx={{ bottom: 0, left: 0, right: 0, height: "50px" }} elevation={3}>
+      <ListItem sx={{ display: "flex", justifyContent: "center" }}>
+        <ListItemText color="secondary">
+          Dirección: Evergreen St 90210
+        </ListItemText>
+      </ListItem>
+
+      {/* <BottomNavigation showLabels>
+        <BottomNavigationAction label="Contactanos" icon={<RestoreIcon />} />
         <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
         <BottomNavigationAction label="Archive" icon={<ArchiveIcon />} />
-      </BottomNavigation>
+      </BottomNavigation> */}
     </Paper>
   );
 };
