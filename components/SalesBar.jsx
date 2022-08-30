@@ -9,15 +9,12 @@ export const SalesBar = () => {
   return (
     <Grid
       container
-      display="flex"
-      alignContent={"center"}
-      justifyContent={"center"}
       className="sales-bar"
       sx={{
         paddingX: { xs: 2, sm: 5, zIndex: 2000 },
-        // display: "flex",
-        // justifyContent: "center",
-        // alignItems: "center",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         backgroundColor: "#fd3f08",
       }}
     >
