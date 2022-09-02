@@ -68,12 +68,8 @@ export default async function handler(req, res) {
         slug,
         title,
       } = req.body;
-      console.log(req.body);
-
-      // console.log(user.id);
 
       const product = await prisma.product.create({
-        // product,
         data: {
           brand,
           cantidad,

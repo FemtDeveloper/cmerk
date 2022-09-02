@@ -9,7 +9,7 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-const categoryList = ["Granos", "Lacteos", "Despensa", "+Mas"];
+const categoryList = ["Granos", "Lacteos", "Despensa", "Mas"];
 
 export const CategoriesNavbar = () => {
   const { push } = useRouter();

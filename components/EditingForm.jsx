@@ -48,7 +48,7 @@ const medidas = [
   "Unidades",
 ];
 
-const ListingForm = ({ product }) => {
+const EditingForm = ({ product }) => {
   const router = useRouter();
   const fileInputRef = useRef();
   const [focused, setFocused] = useState(false);
@@ -62,18 +62,7 @@ const ListingForm = ({ product }) => {
     watch,
     formState: { errors },
   } = useForm({
-    defaultValues: {
-      // _id: "",
-      description: "",
-      images: [],
-      inStock: "",
-      price: undefined,
-      slug: "",
-      cantidad: "",
-      title: "",
-      medidas: "",
-      categoria: "",
-    },
+    defaultValues: product,
   });
 
   const onFilesSelected = async ({ target }) => {
@@ -94,24 +83,24 @@ const ListingForm = ({ product }) => {
       console.log({ error });
     }
   };
-  const onSubmit = async (form) => {
+  const onSubmit = async (form, e) => {
     if (form.images.length < 1) return alert("Debes agregar una imágen");
     // setIsSaving(true);
-    console.log(form);
+    e.preventDefault();
 
     try {
       const { data } = await tesloApi({
-        url: "/products",
-        method: "POST", // si tenemos un _id, entonces actualizar, si no crear
+        url: "/edit/products",
+        method: "PUT", // si tenemos un _id, entonces actualizar, si no crear
         data: form,
       });
 
-      toast("¡Producto Agregado con exito!", {
+      toast("¡Producto Actualizado con exito!", {
         icon: "👏",
       });
-      router.reload();
+      // router.reload();
       // router.replace(`/productos/${data.id}`);
-      revalidatePage();
+      // revalidatePage();
     } catch (error) {
       console.log(error);
       setIsSaving(false);
@@ -183,7 +172,7 @@ const ListingForm = ({ product }) => {
           sx={{ width: "150px" }}
           type="submit"
         >
-          Guardar
+          Actualizar
         </Button>
       </Box>
       <Grid container spacing={2}>
@@ -490,4 +479,4 @@ const ListingForm = ({ product }) => {
 //   };
 // };
 
-export default ListingForm;
+export default EditingForm;

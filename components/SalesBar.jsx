@@ -23,7 +23,17 @@ export const SalesBar = () => {
       </Typography>
       <Button
         variant="outlined"
-        sx={{ color: "red", backgroundColor: "yellow" }}
+        sx={{
+          color: "#222222",
+          backgroundColor: "yellow",
+          marginY: 1,
+          paddingY: 0,
+          "&:hover": {
+            backgroundColor: "#fff600",
+            color: "#e11010",
+            border: "none",
+          },
+        }}
         onClick={() => navigateTo("/productos/promociones")}
       >
         ¡Ver más!

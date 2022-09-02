@@ -26,7 +26,7 @@ const AdminLayot = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <nav style={{ marginTop: "70px" }}>
+      <nav style={{ marginTop: "0px" }}>
         <Navbar />
       </nav>
 

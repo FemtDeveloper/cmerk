@@ -15,6 +15,7 @@ import {
 import { FavoriteOutlined } from "@mui/icons-material";
 import { tesloApi } from "api";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 const CardProduct = ({
   id = "",
@@ -24,6 +25,7 @@ const CardProduct = ({
   medidas = "",
   categoria = "",
   price = 0,
+  slug = "",
   favorite = false,
   inStock = 0,
   brand = "",
@@ -34,8 +36,7 @@ const CardProduct = ({
   const { favoriteProducts, phoneNumber, role } = useSelector(
     (state) => state.user
   );
-
-  console.log(role);
+  const { push } = useRouter();
 
   useEffect(() => {
     favoriteProducts.map((fav) => {
@@ -54,18 +55,21 @@ const CardProduct = ({
         method: "PUT", // si tenemos un _id, entonces actualizar, si no crear
         data: { productId: id },
       });
-      console.log(data.favoriteProduct.includes(id));
     } catch (error) {
       console.log(error);
     }
-    console.log(id);
   };
+  const toDelete = { id, images };
 
-  const onDeleteProduct = () => {
-    console.log("deleting");
+  const onDeleteProduct = async () => {
+    const { data } = await tesloApi({
+      url: "/edit/products",
+      method: "DELETE",
+      data: toDelete,
+    });
   };
   const onEditButton = () => {
-    console.log("editing");
+    push(`/productos/edit/${slug}`);
   };
   return (
     <Grid item xs={12} sm={6} md={4}>
@@ -121,6 +125,7 @@ const CardProduct = ({
         </IconButton>
 
         <List sx={{ paddingX: "20px" }}>
+          <Typography variant="h2">{title}</Typography>
           <Typography variant="h4" sx={{ fontWeight: 600 }} display="flex">
             Precio:{"  "}
             {new Intl.NumberFormat("en-US", {
@@ -173,7 +178,7 @@ const CardProduct = ({
             <span onClick={onEditButton} className="edit-button">
               Editar producto
             </span>
-            <span onClick={onDeleteProduct} className="delete-button">
+            <span onClick={() => onDeleteProduct(id)} className="delete-button">
               Eliminar
             </span>
           </Typography>

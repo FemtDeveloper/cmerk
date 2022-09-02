@@ -9,10 +9,8 @@ export default async function handler(req, res) {
 
   // Create new product
   if (req.method === "POST") {
-    console.log(req.body);
     try {
       const { brand, phoneNumber } = req.body;
-      console.log({ brand: brand });
       const userUpdate = await prisma.user.update({
         where: { email: session.user.email },
         data: {

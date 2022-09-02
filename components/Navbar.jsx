@@ -16,7 +16,6 @@ import {
   MenuOutlined,
   PersonOutlineOutlined,
   SearchOutlined,
-  ShoppingCartOutlined,
 } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
@@ -30,7 +29,6 @@ export const Navbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
 
   const dispatch = useDispatch();
   const { favoriteProducts } = useSelector((state) => state.user);
-  console.log(favoriteProducts);
   useEffect(() => {
     dispatch(getFavoriteProducts());
   }, [dispatch]);
