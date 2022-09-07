@@ -1,5 +1,5 @@
 import { getSession } from "next-auth/react";
-import AdminLayout from "@/components/AdminLayout";
+import AdminLayout from "@/components/admin/AdminLayout";
 import { Box, Typography } from "@mui/material";
 
 import { prisma } from "@/lib/prisma";

@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import Head from "next/head";
 import PropTypes from "prop-types";
-import { Navbar } from "./Navbar";
-import { SideMenu } from "./SideBar";
 import { UiContext } from "context";
-import { SigninModal } from "./SigninModal";
+import { AdminNavbar } from "./AdminNavbar";
+import { SideMenu } from "../SideBar";
+import { SigninModal } from "../SigninModal";
 
 const AdminLayot = ({
   children = null,
@@ -27,7 +27,7 @@ const AdminLayot = ({
       </Head>
 
       <nav style={{ marginTop: "0px" }}>
-        <Navbar />
+        <AdminNavbar />
       </nav>
 
       <SideMenu />
