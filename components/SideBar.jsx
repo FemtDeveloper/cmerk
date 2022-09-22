@@ -70,10 +70,14 @@ export const SideMenu = () => {
     <Drawer
       open={isMenuOpen}
       anchor="right"
-      sx={{ backdropFilter: "blur(4px)", transition: "all 0.5s ease-out" }}
+      sx={{
+        backdropFilter: "blur(4px)",
+        transition: "all 0.5s ease-out",
+        zIndex: 100,
+      }}
       onClose={toggleSideMenu}
     >
-      <Box sx={{ width: 250, paddingTop: 5 }}>
+      <Box sx={{ width: 250, paddingTop: 5, zIndex: 2 }}>
         <List>
           <ListItem>
             <Input
@@ -98,6 +102,12 @@ export const SideMenu = () => {
               <ListItem>
                 <ListItemText primary={`¡Hola ${userName}!`} />
               </ListItem>
+              <ListItem button onClick={() => navigateTo("/usuario/mi-cuenta")}>
+                <ListItemIcon>
+                  <PersonOutlineOutlined sx={{ color: "#ed47dd" }} />
+                </ListItemIcon>
+                <ListItemText primary={"Mi Cuenta"} />
+              </ListItem>
               <ListItem
                 button
                 onClick={() => navigateTo("/usuario/mis-favoritos")}
@@ -107,28 +117,39 @@ export const SideMenu = () => {
                   sx={{ fontWeight: 600 }}
                 />
               </ListItem>
-              <ListItem button onClick={() => navigateTo("/usuario/mi-cuenta")}>
-                <ListItemIcon>
-                  <PersonOutlineOutlined sx={{ color: "#ed47dd" }} />
-                </ListItemIcon>
-                <ListItemText primary={"Mi Cuenta"} />
-              </ListItem>
               {role === "admin" && (
-                <NextLink href="/create" passHref>
-                  <Link>
-                    <ListItem
-                      onClick={toggleSideMenu}
-                      sx={{
-                        backgroundColor:
-                          pathname === "/create" ? "##fdd101" : "#7600a1",
-                        color: pathname === "/create" ? "#7600a1" : "#fdd101",
-                        padding: { sm: "5px 10px", md: "10px 20px" },
-                      }}
-                    >
-                      Agregar Producto
-                    </ListItem>
-                  </Link>
-                </NextLink>
+                <>
+                  <NextLink href="/create" passHref>
+                    <Link>
+                      <ListItem
+                        onClick={toggleSideMenu}
+                        sx={{
+                          backgroundColor:
+                            pathname === "/create" ? "##fdd101" : "#7600a1",
+                          color: pathname === "/create" ? "#7600a1" : "#fdd101",
+                          padding: { sm: "5px 10px", md: "10px 20px" },
+                        }}
+                      >
+                        Agregar Producto
+                      </ListItem>
+                    </Link>
+                  </NextLink>
+                  <NextLink href="/admin/admin-products" passHref>
+                    <Link>
+                      <ListItem
+                        onClick={toggleSideMenu}
+                        sx={{
+                          backgroundColor:
+                            pathname === "/create" ? "##fdd101" : "#7600a1",
+                          color: pathname === "/create" ? "#7600a1" : "#fdd101",
+                          padding: { sm: "5px 10px", md: "10px 20px" },
+                        }}
+                      >
+                        Administrar productos
+                      </ListItem>
+                    </Link>
+                  </NextLink>
+                </>
               )}
             </>
           ) : (
@@ -144,13 +165,13 @@ export const SideMenu = () => {
             <ListItem
               button
               onClick={onLogout}
-              sx={{
-                backgroundColor: "#7600a1",
-                color: "#fdd101",
-                padding: { sm: "5px 10px", md: "10px 20px" },
-              }}
+              // sx={{
+              //   backgroundColor: "#7600a1",
+              //   color: "#fdd101",
+              //   padding: { sm: "5px 10px", md: "10px 20px" },
+              // }}
             >
-              Cerrar Sesión
+              <ListItemText primary={"Cerrar Sesión"} />
             </ListItem>
           )}
         </List>

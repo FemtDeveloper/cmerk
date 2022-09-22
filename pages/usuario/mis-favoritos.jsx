@@ -2,7 +2,7 @@ import AllProducts from "@/components/AllProducts";
 import { useSelector } from "react-redux";
 import { Typography } from "@mui/material";
 import { FullScreenLoading } from "@/components/FullScreenLoading";
-import Layout from "@/components/Layout";
+import Layout from "Layouts/Layout";
 
 const MisFavoritos = () => {
   const { favoriteProducts } = useSelector((state) => state.user);

@@ -1,6 +1,6 @@
 import AllProducts from "@/components/AllProducts";
 import { FullScreenLoading } from "@/components/FullScreenLoading";
-import Layout from "@/components/Layout";
+import Layout from "Layouts/Layout";
 import { prisma } from "@/lib/prisma";
 import { Typography } from "@mui/material";
 import { useRouter } from "next/router";

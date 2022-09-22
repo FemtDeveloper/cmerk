@@ -1,8 +1,35 @@
 import { Box, Button, Typography } from "@mui/material";
+import { tesloApi } from "api";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { startDeletingProduct } from "store/products";
 
-export const ProductToEdit = ({ images = [], title = "" }) => {
+export const ProductToEdit = ({
+  images = [],
+  title = "",
+  slug = "",
+  id = "",
+}) => {
+  const { push } = useRouter();
+  const dispatch = useDispatch();
+  const onEditButton = () => {
+    push(`/productos/edit/${slug}`);
+  };
+
+  const toDelete = { id, images };
+  const onDeleteProduct = async (id) => {
+    console.log({ id });
+    dispatch(startDeletingProduct(id));
+    const { data } = await tesloApi({
+      url: "/edit/products",
+      method: "DELETE",
+      data: toDelete,
+    });
+    console.log(data);
+  };
+
   return (
     <Box
       display="flex"
@@ -22,8 +49,12 @@ export const ProductToEdit = ({ images = [], title = "" }) => {
         {title}
       </Typography>
       <Box>
-        <Button>Editar</Button>
-        <Button color="error" sx={{ ml: 2 }}>
+        <Button onClick={onEditButton}>Editar</Button>
+        <Button
+          color="error"
+          sx={{ ml: 2 }}
+          onClick={() => onDeleteProduct(id)}
+        >
           Eliminar
         </Button>
       </Box>

@@ -26,6 +26,7 @@ export const Footer = () => {
         <ListItemText color="secondary">
           Dirección: Evergreen St 90210
         </ListItemText>
+        <ListItemText color="secondary">Contáctanos: 3005456780</ListItemText>
       </ListItem>
 
       {/* <BottomNavigation showLabels>

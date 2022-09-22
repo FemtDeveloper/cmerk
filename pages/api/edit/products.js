@@ -26,7 +26,7 @@ export default async function handler(req, res) {
       await prisma.product.delete({
         where: { id },
       });
-      return res.status(204).json({ message: "Producto Eliminado con exito" });
+      return res.status(200).json({ message: "Producto Eliminado con exito" });
     } catch (error) {
       console.log(error);
       return res.status(400).json({ message: "No se pudo borrar el prodcuto" });

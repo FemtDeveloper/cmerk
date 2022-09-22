@@ -22,6 +22,7 @@ import { useContext, useEffect, useState } from "react";
 import { UiContext } from "context";
 import { useDispatch, useSelector } from "react-redux";
 import { getFavoriteProducts } from "store/user";
+import { getAllProducts } from "store/products";
 
 export const AdminNavbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
   const { toggleSideMenu } = useContext(UiContext);
@@ -31,6 +32,7 @@ export const AdminNavbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
   const { favoriteProducts } = useSelector((state) => state.user);
   useEffect(() => {
     dispatch(getFavoriteProducts());
+    dispatch(getAllProducts());
   }, [dispatch]);
 
   // todo: needs some memo?

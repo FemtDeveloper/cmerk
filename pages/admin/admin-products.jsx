@@ -1,26 +1,16 @@
 import PropTypes from "prop-types";
 import { Grid, Typography } from "@mui/material";
-import AdminLayout from "@/components/admin/AdminLayout";
+import AdminLayout from "Layouts/AdminLayout";
 import { ProductToEdit } from "@/components/admin/ProductToEdit";
+import { useSelector } from "react-redux";
 
-export async function getServerSideProps() {
-  const products = await prisma.product.findMany();
-  if (!products) {
-    return {
-      notFound: true,
-    };
-  }
-  return {
-    props: {
-      products: JSON.parse(JSON.stringify(products)),
-    },
-  };
-}
+const AllProducts = () => {
+  const { allProducts } = useSelector((state) => state.products);
+  console.log(allProducts);
 
-const AllProducts = ({ products = [] }) => {
   return (
     <AdminLayout>
-      {!products ? (
+      {!allProducts ? (
         <Typography variant="h1">
           <span>No hay productos para mostrar en el momento</span>
         </Typography>
@@ -33,7 +23,7 @@ const AllProducts = ({ products = [] }) => {
           mt={8}
           justifyContent="center"
         >
-          {products.map((product) => (
+          {allProducts.map((product) => (
             <ProductToEdit key={product.id} {...product} />
           ))}
         </Grid>

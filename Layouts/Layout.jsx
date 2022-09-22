@@ -1,16 +1,19 @@
 import { useContext } from "react";
 import Head from "next/head";
 import PropTypes from "prop-types";
+import { Navbar } from "../components/Navbar";
+import { SideMenu } from "../components/SideBar";
 import { UiContext } from "context";
-import { AdminNavbar } from "./AdminNavbar";
-import { SideMenu } from "../SideBar";
-import { SigninModal } from "../SigninModal";
+import { SigninModal } from "../components/SigninModal";
+import { CategoriesNavbar } from "../components/CategoriesNavbar";
+import { Footer } from "../components/Footer";
+import { SalesBar } from "../components/SalesBar";
 
-const AdminLayot = ({
+const Layout = ({
   children = null,
   title = "",
   pageDescription = "",
-  gender = "",
+  isPromo = false,
 }) => {
   const {} = useContext(UiContext);
 
@@ -22,13 +25,16 @@ const AdminLayot = ({
 
         <meta name="og:title" content={title} />
         <meta name="og:description" content={pageDescription} />
-        <meta name="theme-color" content="#319197"></meta>
+        <meta name="theme-color" content="#4b72ff"></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <nav style={{ marginTop: "0px" }}>
-        <AdminNavbar />
+      {!isPromo && <SalesBar />}
+      <nav className="navbar-sticky" style={{ position: "sticky", zIndex: 1 }}>
+        <Navbar />
       </nav>
+
+      <CategoriesNavbar />
 
       <SideMenu />
       <main
@@ -41,14 +47,17 @@ const AdminLayot = ({
       >
         {children}
       </main>
+      <nav>
+        <Footer />
+      </nav>
 
       <SigninModal />
     </>
   );
 };
 
-AdminLayot.propTypes = {
+Layout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 };
 
-export default AdminLayot;
+export default Layout;

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import Layout from "@/components/Layout";
+import Layout from "Layouts/Layout";
 import { prisma } from "@/lib/prisma";
 import axios from "axios";
 import { Box, Card, Grid, Typography } from "@mui/material";

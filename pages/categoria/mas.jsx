@@ -1,5 +1,5 @@
 import CategoryCard from "@/components/CategoryCard";
-import Layout from "@/components/Layout";
+import Layout from "Layouts/Layout";
 import { Grid } from "@mui/material";
 import { useRouter } from "next/router";
 

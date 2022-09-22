@@ -159,14 +159,6 @@ const CardProduct = ({
               </Link>
             </NextLink>
           </span>
-          {/*<a
-            href={`https://wa.me/${phoneNumber}`}
-            className="whatsapp_float"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <WhatsApp sx={{ color: "green", fontSize: "40px" }} />
-          </a> */}
         </Typography>
         {role === "admin" && (
           <Typography

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Grid, Typography } from "@mui/material";
-import Layout from "@/components/Layout";
+import Layout from "Layouts/Layout";
 import { prisma } from "@/lib/prisma";
 import AllProducts from "@/components/AllProducts";
 
