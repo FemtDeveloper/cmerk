@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 
 const AllProducts = () => {
   const { allProducts } = useSelector((state) => state.products);
-  console.log(allProducts);
 
   return (
     <AdminLayout>

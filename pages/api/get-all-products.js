@@ -8,7 +8,6 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     try {
       const products = await prisma.product.findMany();
-      console.log({ products });
 
       res.status(200).json({ products });
     } catch (error) {

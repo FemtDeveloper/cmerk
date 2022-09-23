@@ -1,7 +1,6 @@
 import NextLink from "next/link";
 import {
   AppBar,
-  Badge,
   Box,
   Button,
   IconButton,
@@ -13,7 +12,6 @@ import {
 } from "@mui/material";
 import {
   ClearOutlined,
-  MenuOutlined,
   PersonOutlineOutlined,
   SearchOutlined,
 } from "@mui/icons-material";
@@ -28,7 +26,7 @@ export const Navbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
   const { pathname, push } = useRouter();
 
   const dispatch = useDispatch();
-  const { favoriteProducts } = useSelector((state) => state.user);
+  // const { favoriteProducts } = useSelector((state) => state.user);
   useEffect(() => {
     dispatch(getFavoriteProducts());
   }, [dispatch]);
@@ -41,6 +39,7 @@ export const Navbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
     if (searchTerm.trim().length === 0) return;
     push(`/search/${searchTerm}`);
     setSearchTerm("");
+    setIsSearchVisible(false);
   };
 
   return (
@@ -51,7 +50,7 @@ export const Navbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
             <Typography
               variant="h6"
               sx={{
-                display: { xs: "flex", sm: "flex", md: "none" },
+                display: { xs: "flex", md: "none" },
               }}
             >
               C-Merca
@@ -76,7 +75,7 @@ export const Navbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
 
         <Box
           sx={{
-            display: isSearchVisible ? "none" : { xs: "none", sm: "block" },
+            display: isSearchVisible ? "none" : { xs: "none", md: "flex" },
           }}
           className="fadeIn"
         >
@@ -88,7 +87,7 @@ export const Navbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
                     pathname === "/categoria/lacteos" ? "info" : "",
                   color: pathname === "/categoria/lacteos" ? "" : "info",
                   padding: { sm: "2px 5px", md: "10px 20px" },
-                  fontSize: { sm: "16px" },
+                  fontSize: { sm: "14px", md: "16px" },
                 }}
               >
                 Lacteos
@@ -103,7 +102,7 @@ export const Navbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
                     pathname === "/categoria/despensa" ? "info" : "",
                   color: pathname === "/categoria/despensa" ? "" : "info",
                   padding: { xs: "2px 5px", md: "10px 20px" },
-                  fontSize: { sm: "16px" },
+                  fontSize: { sm: "14px", md: "16px" },
                 }}
               >
                 Despensa
@@ -119,7 +118,7 @@ export const Navbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
                   color:
                     pathname === "/categoria/frutas-y-verduras" ? "" : "info",
                   padding: { sm: "2px 5px", md: "10px 20px" },
-                  fontSize: { sm: "16px" },
+                  fontSize: { sm: "14px", md: "16px" },
                 }}
               >
                 Frutas y Verduras
@@ -139,7 +138,7 @@ export const Navbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
                       ? ""
                       : "info",
                   padding: { sm: "2px 5px", md: "10px 20px" },
-                  fontSize: { sm: "16px" },
+                  fontSize: { sm: "14px", md: "16px" },
                 }}
               >
                 Carne, Pollo y Pescado
@@ -151,7 +150,11 @@ export const Navbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
 
         {isSearchVisible ? (
           <Input
-            sx={{ display: { xs: "none", sm: "flex" }, color: "info" }}
+            sx={{
+              display: { xs: "none", sm: "flex" },
+              color: "white",
+              "::before": { borderBottomColor: "blue" },
+            }}
             className="fadeIn"
             autoFocus={true}
             value={searchTerm}
@@ -162,7 +165,7 @@ export const Navbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
             endAdornment={
               <InputAdornment position="end">
                 <IconButton onClick={() => setIsSearchVisible(false)}>
-                  <ClearOutlined sx={{ color: "info" }} />
+                  <ClearOutlined sx={{ color: "white" }} />
                 </IconButton>
               </InputAdornment>
             }

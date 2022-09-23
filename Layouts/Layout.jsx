@@ -43,6 +43,7 @@ const Layout = ({
           maxWidth: "1440px",
           padding: "0px 30px",
           backgroundColor: "#f9f9f9",
+          minHeight: "90vh",
         }}
       >
         {children}
