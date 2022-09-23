@@ -4,11 +4,9 @@ import { Grid, Typography } from "@mui/material";
 import Layout from "Layouts/Layout";
 import { prisma } from "@/lib/prisma";
 import AllProducts from "@/components/AllProducts";
-
 import { FullScreenLoading } from "@/components/FullScreenLoading";
-import { SalesBar } from "@/components/SalesBar";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const products = await prisma.product.findMany();
   if (!products) {
     return {
@@ -19,14 +17,13 @@ export async function getStaticProps() {
     props: {
       products: JSON.parse(JSON.stringify(products)),
     },
-    revalidate: 3600 * 24,
   };
 }
 
 export default function Home({ products = [] }) {
-  // if (products.length === 0) {
-  //   return <FullScreenLoading />;
-  // }
+  if (products.length === 0) {
+    return <FullScreenLoading />;
+  }
 
   return (
     <Layout title="C-Merca">

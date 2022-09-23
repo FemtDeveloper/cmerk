@@ -72,8 +72,10 @@ model Product {
   inStock     String
   medidas     String
   price       String
+  pricePromo  String?
   slug        String
   title       String
+  hasPromo    Boolean  @default(false)
   ownerId     String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

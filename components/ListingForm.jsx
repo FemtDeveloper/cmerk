@@ -97,7 +97,6 @@ const ListingForm = ({ product }) => {
   const onSubmit = async (form) => {
     if (form.images.length < 1) return alert("Debes agregar una imágen");
     // setIsSaving(true);
-    console.log(form);
 
     try {
       const { data } = await tesloApi({
@@ -215,20 +214,6 @@ const ListingForm = ({ product }) => {
             helperText={errors.description?.message}
           />
 
-          {/* <TextField
-            label="Inventario"
-            type="number"
-            variant="filled"
-            fullWidth
-            sx={{ mb: 1 }}
-            {...register("inStock", {
-              required: "Este campo es requerido",
-              min: { value: 0, message: "Mínimo de valor cero" },
-            })}
-            error={!!errors.inStock}
-            helperText={errors.inStock?.message}
-          /> */}
-
           <TextField
             label="Precio"
             type="number"
@@ -292,20 +277,6 @@ const ListingForm = ({ product }) => {
               ))}
             </RadioGroup>
           </FormControl>
-
-          {/* <FormControl>
-            <FormLabel color="info">Tallas</FormLabel>
-            <FormGroup row>
-              {sizes.map((size) => (
-                <FormControlLabel
-                  key={size}
-                  control={<Checkbox color="info" />}
-                  label={size}
-                  onChange={() => onChangeSize(size)}
-                />
-              ))}
-            </FormGroup> 
-          </FormControl>*/}
         </Grid>
 
         {/* Tags e imagenes */}
@@ -395,11 +366,6 @@ const ListingForm = ({ product }) => {
               style={{ display: "none" }}
               onChange={onFilesSelected}
             />
-            {/* <ImageUpload
-              // initialImage={{ src: image | null, alt: initialFormValues.title }}
-              initialImage={null}
-              onChangePicture={upload}
-            /> */}
 
             <Chip
               label="Es necesario al menos 1 imagen"
@@ -455,39 +421,5 @@ const ListingForm = ({ product }) => {
     </form>
   );
 };
-
-// You should use getServerSideProps when:
-// - Only if you need to pre-render a page whose data must be fetched at request time
-
-// export const getServerSideProps = async ({ query }) => {
-//   const { slug = "" } = query;
-
-//   let product;
-
-//   if (slug === "new") {
-//     // crear un producto
-//     const tempProduct = JSON.parse(JSON.stringify(new Product()));
-//     delete tempProduct._id;
-//     tempProduct.images = ["img1.jpg", "img2.jpg"];
-//     product = tempProduct;
-//   } else {
-//     product = await dbProducts.getProductBySlug(slug.toString());
-//   }
-
-//   if (!product) {
-//     return {
-//       redirect: {
-//         destination: "/admin/products",
-//         permanent: false,
-//       },
-//     };
-//   }
-
-//   return {
-//     props: {
-//       product,
-//     },
-//   };
-// };
 
 export default ListingForm;

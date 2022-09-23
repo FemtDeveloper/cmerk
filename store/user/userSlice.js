@@ -1,12 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getFavoriteProducts } from "./thunks";
-
-// const getFavorites = async () => {
-//   const resp = await tesloApi("/get-favorites");
-//   const favoritesIds = await resp.data;
-//   console.log(favoritesIds);
-//   return favoritesIds;
-// };
 
 const initialState = {
   favoriteProducts: [],

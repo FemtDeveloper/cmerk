@@ -2,32 +2,37 @@ import { Box, Button, Typography } from "@mui/material";
 import { tesloApi } from "api";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { startDeletingProduct } from "store/products";
+import { ModalPromo } from "./ModalPromo";
 
 export const ProductToEdit = ({
   images = [],
   title = "",
   slug = "",
   id = "",
+  price = "",
 }) => {
   const { push } = useRouter();
   const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const onEditButton = () => {
     push(`/productos/edit/${slug}`);
   };
 
   const toDelete = { id, images };
   const onDeleteProduct = async (id) => {
-    console.log({ id });
     dispatch(startDeletingProduct(id));
     const { data } = await tesloApi({
       url: "/edit/products",
       method: "DELETE",
       data: toDelete,
     });
-    console.log(data);
+  };
+  const onAddPromo = (id) => {
+    setIsModalOpen(true);
   };
 
   return (
@@ -48,15 +53,21 @@ export const ProductToEdit = ({
       <Typography variant="body1" flex={1}>
         {title}
       </Typography>
-      <Box>
+      <Box display="flex" gap={2}>
+        <Button onClick={() => onAddPromo(id)} color="primary">
+          Agregar promo
+        </Button>
         <Button onClick={onEditButton}>Editar</Button>
-        <Button
-          color="error"
-          sx={{ ml: 2 }}
-          onClick={() => onDeleteProduct(id)}
-        >
+        <Button color="error" onClick={() => onDeleteProduct(id)}>
           Eliminar
         </Button>
+        <ModalPromo
+          isOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          price={price}
+          id={id}
+          image={images[0]}
+        />
       </Box>
     </Box>
   );

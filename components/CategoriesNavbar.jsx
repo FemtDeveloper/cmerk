@@ -22,10 +22,12 @@ export const CategoriesNavbar = () => {
       width="100%"
       flexDirection="column"
       justifyContent={"center"}
+      display={{ xs: "none", sm: "flex" }}
       sx={{
         boxShadow: "0px 9px 14px -6px rgba(168,168,168,0.75)",
         // marginTop: "30px",
         backgroundColor: "#f8f8f8",
+        // display: "none",
       }}
     >
       <Toolbar

@@ -12,6 +12,9 @@
   box-shadow: 2px 1px 3px 1px #43474812, 0px 1px 1px 0px #43474812,
     0px 5px 6px 0px #43474812;
 }
+.css-1vf0uy3-MuiInputBase-root-MuiInput-root:hover:not(.Mui-disabled):before {
+  border-bottom: 2px solid #ccccccde;
+}
 
 .css-6joyhh-MuiGrid-root {
   border-radius: 20;

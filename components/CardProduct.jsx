@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import { useEffect, useMemo, useState } from "react";
 import NextLink from "next/link";
 import {
+  Box,
   Card,
   CardActionArea,
   CardMedia,
+  Chip,
   Grid,
   IconButton,
   Link,
@@ -29,13 +31,12 @@ const CardProduct = ({
   favorite = false,
   inStock = 0,
   brand = "",
+  hasPromo = false,
+  pricePromo = "",
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const { favoriteProducts, phoneNumber, role } = useSelector(
-    (state) => state.user
-  );
+  const { favoriteProducts, role } = useSelector((state) => state.user);
   const { push } = useRouter();
 
   useEffect(() => {
@@ -61,13 +62,13 @@ const CardProduct = ({
   };
   const toDelete = { id, images };
 
-  const onDeleteProduct = async () => {
-    const { data } = await tesloApi({
-      url: "/edit/products",
-      method: "DELETE",
-      data: toDelete,
-    });
-  };
+  // const onDeleteProduct = async () => {
+  //   const { data } = await tesloApi({
+  //     url: "/edit/products",
+  //     method: "DELETE",
+  //     data: toDelete,
+  //   });
+  // };
   const onEditButton = () => {
     push(`/productos/edit/${slug}`);
   };
@@ -82,10 +83,7 @@ const CardProduct = ({
       >
         <NextLink href={`/productos/${id}`}>
           <Link>
-            <CardActionArea
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
+            <CardActionArea>
               <CardMedia
                 style={{
                   width: "100%",
@@ -107,6 +105,20 @@ const CardProduct = ({
                   />
                 </div>
               </CardMedia>
+              {hasPromo && (
+                <Chip
+                  label="Producto en promoción"
+                  variant="outlined"
+                  color="error"
+                  sx={{
+                    position: "absolute",
+                    top: 5,
+                    right: 0,
+                    fontWeight: 600,
+                    fontSize: "16px",
+                  }}
+                />
+              )}
             </CardActionArea>
           </Link>
         </NextLink>
@@ -117,7 +129,7 @@ const CardProduct = ({
             position: "absolute",
             right: "2px",
             cursor: "pointer",
-            zIndex: 20,
+            // zIndex: 0,
           }}
           onClick={onFavorite}
         >
@@ -126,14 +138,47 @@ const CardProduct = ({
 
         <List sx={{ paddingX: "20px" }}>
           <Typography variant="h2">{title}</Typography>
-          <Typography variant="h4" sx={{ fontWeight: 600 }} display="flex">
-            Precio:{"  "}
-            {new Intl.NumberFormat("en-US", {
-              style: "currency",
-              currency: "USD",
-              minimumFractionDigits: 0,
-            }).format(parseInt(price) ?? 0)}
-          </Typography>
+
+          {hasPromo ? (
+            <Box display={"flex"}>
+              <Typography
+                variant="h4"
+                sx={{ fontWeight: 600 }}
+                display="flex"
+                mr={1}
+              >
+                Precio:{"  "}
+                {new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                  minimumFractionDigits: 0,
+                }).format(parseInt(pricePromo) ?? 0)}
+              </Typography>
+              <Typography
+                sx={{
+                  color: "red",
+                  fontSize: 14,
+                  textDecoration: "line-through",
+                }}
+              >
+                {new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                  minimumFractionDigits: 0,
+                }).format(parseInt(price) ?? 0)}
+              </Typography>
+            </Box>
+          ) : (
+            <Typography variant="h4" sx={{ fontWeight: 600 }} display="flex">
+              Precio:{"  "}
+              {new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "USD",
+                minimumFractionDigits: 0,
+              }).format(parseInt(price) ?? 0)}
+            </Typography>
+          )}
+
           <Typography variant="h4">
             <strong> Presentación:</strong> {cantidad} {medidas}
           </Typography>
@@ -161,17 +206,9 @@ const CardProduct = ({
           </span>
         </Typography>
         {role === "admin" && (
-          <Typography
-            display={"flex"}
-            justifyContent="space-around"
-            mb={2}
-            mr={2}
-          >
+          <Typography display={"flex"} justifyContent="flex-end" mb={2} mr={2}>
             <span onClick={onEditButton} className="edit-button">
               Editar producto
-            </span>
-            <span onClick={() => onDeleteProduct(id)} className="delete-button">
-              Eliminar
             </span>
           </Typography>
         )}
