@@ -31,7 +31,7 @@ export async function getStaticProps() {
 
 const Promociones = ({ products }) => {
   return (
-    <Layout>
+    <Layout title="Promociones">
       <Grid container spacing={4} minHeight="72vh" mb={8}>
         {products.map((product) => (
           <CardProduct key={product.id} {...product} />

@@ -17,7 +17,11 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+          <link
+            rel="shortcut icon"
+            type="image/x-icon"
+            href="/cmerk-logo.ico"
+          />
         </Head>
         <body>
           <Main />
