@@ -8,6 +8,7 @@ import { SigninModal } from "../components/SigninModal";
 import { CategoriesNavbar } from "../components/CategoriesNavbar";
 import { Footer } from "../components/Footer";
 import { SalesBar } from "../components/SalesBar";
+import { RegisterModal } from "@/components/RegisterModal";
 
 const Layout = ({
   children = null,
@@ -26,7 +27,6 @@ const Layout = ({
         <meta name="og:title" content={title} />
         <meta name="og:description" content={pageDescription} />
         <meta name="theme-color" content="#4b72ff"></meta>
-        <link rel="icon" href="/cmerk-logo" />
       </Head>
 
       {!isPromo && <SalesBar />}
@@ -53,6 +53,7 @@ const Layout = ({
       </nav>
 
       <SigninModal />
+      <RegisterModal />
     </>
   );
 };

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import PropTypes from "prop-types";
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import NextLink from "next/link";
 import {
   Box,
@@ -18,6 +18,8 @@ import { FavoriteOutlined } from "@mui/icons-material";
 import { tesloApi } from "api";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+import { UiContext } from "context";
 
 const CardProduct = ({
   id = "",
@@ -35,6 +37,9 @@ const CardProduct = ({
   pricePromo = "",
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const { status } = useSession();
+  const { toggleSigninModal } = useContext(UiContext);
+  // console.log(status);
 
   const { favoriteProducts, role } = useSelector((state) => state.user);
   const { push } = useRouter();
@@ -48,6 +53,10 @@ const CardProduct = ({
   }, [favoriteProducts, id]);
 
   const onFavorite = async (e) => {
+    if (status === "unauthenticated") {
+      toggleSigninModal();
+      return;
+    }
     setIsFavorite(!isFavorite);
     e.preventDefault();
     try {
@@ -129,7 +138,7 @@ const CardProduct = ({
             position: "absolute",
             right: "2px",
             cursor: "pointer",
-            // zIndex: 0,
+            zIndex: 10,
           }}
           onClick={onFavorite}
         >

@@ -4,6 +4,7 @@ import { UiContext, uiReducer } from "./";
 const UI_INITIAL_STATE = {
   isMenuOpen: false,
   isModalOpen: false,
+  isRegisterModalOpen: false,
 };
 
 export const UiProvider = ({ children }) => {
@@ -15,6 +16,10 @@ export const UiProvider = ({ children }) => {
   const toggleSigninModal = () => {
     dispatch({ type: "[UI] - ToggleSigninModal" });
   };
+  const toggleRegisterModal = () => {
+    dispatch({ type: "[UI] - ToggleSigninModal" });
+    dispatch({ type: "[UI] - ToggleRegisterModal" });
+  };
 
   return (
     <UiContext.Provider
@@ -24,6 +29,7 @@ export const UiProvider = ({ children }) => {
         // Methods
         toggleSideMenu,
         toggleSigninModal,
+        toggleRegisterModal,
       }}
     >
       {children}

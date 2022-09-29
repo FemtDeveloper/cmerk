@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import NextLink from "next/link";
+import { useContext } from "react";
 import { getProviders, signIn } from "next-auth/react";
 import {
   Alert,
@@ -15,29 +14,19 @@ import {
   Typography,
 } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
-
 import { UiContext } from "context";
 import { useForm } from "hooks";
 
-const formData = {
-  email: "",
-  password: "",
-};
+const formData = { name: "", email: "", password: "" };
 
-export const SigninModal = () => {
-  const { isModalOpen, toggleSigninModal, toggleRegisterModal } =
-    useContext(UiContext);
+export const RegisterModal = () => {
+  const { isRegisterModalOpen, toggleRegisterModal } = useContext(UiContext);
 
-  const { email, password, onInputChange } = useForm(formData);
+  const { email, password, name, onInputChange, formState } = useForm(formData);
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(startLoginWithEmailPassword({ email, password }));
-  };
-
-  const openRegisterModal = (e) => {
-    e.preventDefault();
-    toggleSigninModal();
-    toggleRegisterModal();
+    console.log({ formState });
+    // dispatch(startLoginWithEmailPassword({ email, password }));
   };
 
   const onGoogleSignIn = () => {
@@ -53,15 +42,15 @@ export const SigninModal = () => {
     <Modal
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
-      open={isModalOpen}
-      onClose={toggleSigninModal}
+      open={isRegisterModalOpen}
+      onClose={toggleRegisterModal}
       closeAfterTransition
       BackdropComponent={Backdrop}
       BackdropProps={{
         timeout: 500,
       }}
     >
-      <Fade in={isModalOpen}>
+      <Fade in={isRegisterModalOpen}>
         <Card
           xs={10}
           sx={{
@@ -75,12 +64,12 @@ export const SigninModal = () => {
           }}
         >
           <Grid container justifyContent={"center"}>
-            <Typography variant="h2" textAlign={"center"}>
+            <Typography variant="h1" textAlign={"center"}>
               Supermercado C-Merk
             </Typography>
             <Grid item textAlign={"center"} xs={12}>
-              <Typography variant="h4" mt={2}>
-                Te invita a ingresar a tu cuenta
+              <Typography variant="h2" mt={2}>
+                Regístrate
               </Typography>
             </Grid>
           </Grid>
@@ -88,8 +77,20 @@ export const SigninModal = () => {
             onSubmit={onSubmit}
             className="animate__animated animate__fadeIn animate__faster"
           >
-            <Grid container justifyContent={"flex-end"}>
-              {/* <Grid item xs={12} sx={{ mt: 2 }}>
+            <Grid container>
+              <Grid item xs={12} sx={{ mt: 2 }}>
+                <TextField
+                  label="Name"
+                  required
+                  fullWidth
+                  type="text"
+                  placeholder="Tu nombre"
+                  name="name"
+                  value={name}
+                  onChange={onInputChange}
+                />
+              </Grid>
+              <Grid item xs={12} sx={{ mt: 2 }}>
                 <TextField
                   label="Email"
                   required
@@ -103,62 +104,43 @@ export const SigninModal = () => {
               </Grid>
               <Grid item xs={12} sx={{ mt: 2 }}>
                 <TextField
-                  label="Comtraseña"
+                  label="Contraseña"
                   required
                   fullWidth
                   type="password"
+                  autoComplete="on"
                   placeholder="introduce tu contraseña"
                   name="password"
                   value={password}
                   onChange={onInputChange}
                 />
-              </Grid> */}
-              <Grid
-                container
-                sx={{ mt: 2 }}
-                // display={errorMessage ? "" : "none"}
-              >
+              </Grid>
+              <Grid container sx={{ mt: 2 }}>
                 {/* <Grid item xs={12} sx={{ mt: 2 }}>
                   <Alert severity="error">Error al ingresar</Alert>
                 </Grid> */}
               </Grid>
-              <Grid container spacing={2} sx={{ mt: 1 }}>
-                {/*  <Grid item xs={12} sm={6}>
-                   <Button
-                    variant="contained"
-                    fullWidth
-                    type="submit"
-                    //   disabled={isAuthenticating}
-                  >
-                    Login
+              <Grid container spacing={2} justifyContent="center">
+                <Grid item xs={12} sm={6}>
+                  <Button variant="contained" fullWidth type="submit">
+                    <Typography sx={{ ml: 2 }} color="secondary">
+                      Registrarse
+                    </Typography>
                   </Button>
-                </Grid> */}
+                </Grid>
                 <Grid item xs={12}>
                   <Button
                     variant="contained"
                     fullWidth
                     onClick={onGoogleSignIn}
-                    //   disabled={isAuthenticating}
                   >
                     <GoogleIcon />
                     <Typography sx={{ ml: 2 }} color="secondary">
-                      Google
+                      Regístrate con Google
                     </Typography>
                   </Button>
                 </Grid>
               </Grid>
-              <Box
-                component="span"
-                mt={2}
-                onClick={openRegisterModal}
-                sx={{
-                  cursor: "pointer",
-                  color: "blue",
-                  textDecoration: "underline",
-                }}
-              >
-                ¿No tienes cuenta?
-              </Box>
             </Grid>
           </form>
         </Card>

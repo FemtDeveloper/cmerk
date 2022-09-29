@@ -20,16 +20,19 @@ import { useContext, useEffect, useState } from "react";
 import { UiContext } from "context";
 import { useDispatch, useSelector } from "react-redux";
 import { getFavoriteProducts } from "store/user";
+import { useSession } from "next-auth/react";
 
 export const Navbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
   const { toggleSideMenu } = useContext(UiContext);
   const { pathname, push } = useRouter();
-
   const dispatch = useDispatch();
-  // const { favoriteProducts } = useSelector((state) => state.user);
+  const { status } = useSession();
+
   useEffect(() => {
-    dispatch(getFavoriteProducts());
-  }, [dispatch]);
+    if (status === "authenticated") {
+      dispatch(getFavoriteProducts());
+    }
+  }, [dispatch, status]);
 
   // todo: needs some memo?
   const [searchTerm, setSearchTerm] = useState("");

@@ -10,6 +10,12 @@ export const uiReducer = (state, action) => {
         ...state,
         isModalOpen: !state.isModalOpen,
       };
+    case "[UI] - ToggleRegisterModal":
+      return {
+        ...state,
+        isModalOpen: !state.isModalOpen,
+        isRegisterModalOpen: !state.isRegisterModalOpen,
+      };
 
     default:
       return state;

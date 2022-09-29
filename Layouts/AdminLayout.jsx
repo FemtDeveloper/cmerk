@@ -5,6 +5,7 @@ import { UiContext } from "context";
 import { AdminNavbar } from "../components/admin/AdminNavbar";
 import { SideMenu } from "../components/SideBar";
 import { SigninModal } from "../components/SigninModal";
+import { RegisterModal } from "@/components/RegisterModal";
 
 const AdminLayot = ({
   children = null,
@@ -43,6 +44,7 @@ const AdminLayot = ({
       </main>
 
       <SigninModal />
+      <RegisterModal />
     </>
   );
 };

@@ -35,16 +35,14 @@ export const SideMenu = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { push, pathname } = useRouter();
   const { status } = useSession();
-  const { isMenuOpen, toggleSideMenu, toggleSigninModal } =
+  const { isMenuOpen, toggleSideMenu, toggleSigninModal, toggleRegisterModal } =
     useContext(UiContext);
   const { user } = useContext(AuthContext);
   let userName;
   if (user) {
     userName = user.name.split(" ")[0];
   }
-  const { favoriteProducts, phoneNumber, role } = useSelector(
-    (state) => state.user
-  );
+  const { role } = useSelector((state) => state.user);
 
   const onSearchTerm = () => {
     if (searchTerm.trim().length === 0) return;
