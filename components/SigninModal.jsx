@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import NextLink from "next/link";
-import { getProviders, signIn } from "next-auth/react";
+import { useContext, useState } from "react";
+import { signIn, useSession } from "next-auth/react";
 import {
   Alert,
   Backdrop,
   Box,
   Button,
   Card,
+  Chip,
   Fade,
   Grid,
   Link,
@@ -18,6 +18,8 @@ import GoogleIcon from "@mui/icons-material/Google";
 
 import { UiContext } from "context";
 import { useForm } from "hooks";
+import { Router } from "react-router-dom";
+import { useRouter } from "next/router";
 
 const formData = {
   email: "",
@@ -25,13 +27,35 @@ const formData = {
 };
 
 export const SigninModal = () => {
-  const { isModalOpen, toggleSigninModal, toggleRegisterModal } =
-    useContext(UiContext);
+  const {
+    isModalOpen,
+    toggleSigninModal,
+    toggleRegisterModal,
+    toggleSideMenu,
+  } = useContext(UiContext);
+  const [message, setMessage] = useState(null);
+  const router = useRouter();
 
-  const { email, password, onInputChange } = useForm(formData);
-  const onSubmit = (e) => {
+  const { email, password, onInputChange, formState } = useForm(formData);
+
+  const { data: session } = useSession();
+
+  const onSubmit = async (e) => {
     e.preventDefault();
-    dispatch(startLoginWithEmailPassword({ email, password }));
+    let options = { redirect: false, password, email };
+    const res = await signIn("credentials", options);
+    setMessage(null);
+    setTimeout(() => {
+      toggleSigninModal();
+      toggleSideMenu();
+    }, 1500);
+    if (res?.error) {
+      setMessage(res.error);
+      setTimeout(() => {
+        setMessage(null);
+      }, 2000);
+      console.log(res.error);
+    }
   };
 
   const openRegisterModal = (e) => {
@@ -89,7 +113,7 @@ export const SigninModal = () => {
             className="animate__animated animate__fadeIn animate__faster"
           >
             <Grid container justifyContent={"flex-end"}>
-              {/* <Grid item xs={12} sx={{ mt: 2 }}>
+              <Grid item xs={12} sx={{ mt: 2 }}>
                 <TextField
                   label="Email"
                   required
@@ -101,7 +125,7 @@ export const SigninModal = () => {
                   onChange={onInputChange}
                 />
               </Grid>
-              <Grid item xs={12} sx={{ mt: 2 }}>
+              <Grid item xs={12} sx={{ my: 2 }}>
                 <TextField
                   label="Comtraseña"
                   required
@@ -112,7 +136,28 @@ export const SigninModal = () => {
                   value={password}
                   onChange={onInputChange}
                 />
-              </Grid> */}
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                display="flex"
+                justifyItems={"center"}
+                flexDirection="column"
+              >
+                {message && (
+                  <Chip
+                    color="error"
+                    variant="outlined"
+                    label={message}
+                    sx={{ mb: 2 }}
+                  />
+                )}
+                <Button variant="contained" fullWidth type="submit">
+                  <Typography sx={{ ml: 2 }} color="secondary">
+                    Ingresar
+                  </Typography>
+                </Button>
+              </Grid>
               <Grid
                 container
                 sx={{ mt: 2 }}
@@ -122,17 +167,7 @@ export const SigninModal = () => {
                   <Alert severity="error">Error al ingresar</Alert>
                 </Grid> */}
               </Grid>
-              <Grid container spacing={2} sx={{ mt: 1 }}>
-                {/*  <Grid item xs={12} sm={6}>
-                   <Button
-                    variant="contained"
-                    fullWidth
-                    type="submit"
-                    //   disabled={isAuthenticating}
-                  >
-                    Login
-                  </Button>
-                </Grid> */}
+              <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <Button
                     variant="contained"
@@ -149,7 +184,7 @@ export const SigninModal = () => {
               </Grid>
               <Box
                 component="span"
-                mt={2}
+                mt={1}
                 onClick={openRegisterModal}
                 sx={{
                   cursor: "pointer",

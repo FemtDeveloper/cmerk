@@ -92,10 +92,9 @@ export const blueTheme = createTheme({
           fontWeight: 700,
           ":hover": {
             color: "#4b72ff",
-            backgroundColor: "#f2f1ed",
+            backgroundColor: "#0c3ff7",
             borderRadius: 10,
-
-            transition: "all 0.3s ease-in-out",
+            transition: "all 0.2s ease-in-out",
           },
         },
       },

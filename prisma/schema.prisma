@@ -48,6 +48,7 @@ model User {
   image         String?
   brand         String?
   phoneNumber   String?
+  password      String?
   favoriteProduct String[]
   accounts      Account[]
   sessions      Session[]

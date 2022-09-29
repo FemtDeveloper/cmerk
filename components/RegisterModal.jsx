@@ -1,11 +1,12 @@
-import { useContext } from "react";
-import { getProviders, signIn } from "next-auth/react";
+import { useContext, useState } from "react";
+import { getProviders, signIn, useSession } from "next-auth/react";
 import {
   Alert,
   Backdrop,
   Box,
   Button,
   Card,
+  Chip,
   Fade,
   Grid,
   Link,
@@ -16,17 +17,37 @@ import {
 import GoogleIcon from "@mui/icons-material/Google";
 import { UiContext } from "context";
 import { useForm } from "hooks";
+import { tesloApi } from "api";
+import Router, { useRouter } from "next/router";
+import { redirect } from "next/dist/server/api-utils";
 
 const formData = { name: "", email: "", password: "" };
 
 export const RegisterModal = () => {
-  const { isRegisterModalOpen, toggleRegisterModal } = useContext(UiContext);
+  const { isRegisterModalOpen, toggleRegisterModal, toggleSideMenu } =
+    useContext(UiContext);
+  const [isError, setIsError] = useState(false);
+  const [message, setMessage] = useState(null);
+
+  const { data: session } = useSession();
 
   const { email, password, name, onInputChange, formState } = useForm(formData);
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log({ formState });
-    // dispatch(startLoginWithEmailPassword({ email, password }));
+
+    try {
+      const res = await tesloApi.post("/register", formState);
+      setMessage(res.data.message);
+      setTimeout(() => {
+        setMessage(null);
+        toggleRegisterModal();
+        toggleSideMenu();
+      }, 2000);
+      let options = { redirect: false, password, email };
+      await signIn("credentials", options);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const onGoogleSignIn = () => {
@@ -115,10 +136,17 @@ export const RegisterModal = () => {
                   onChange={onInputChange}
                 />
               </Grid>
-              <Grid container sx={{ mt: 2 }}>
-                {/* <Grid item xs={12} sx={{ mt: 2 }}>
-                  <Alert severity="error">Error al ingresar</Alert>
-                </Grid> */}
+              <Grid container sx={{ my: 2 }} justifyContent="center">
+                {isError && (
+                  <Chip
+                    color="error"
+                    variant="outlined"
+                    label="Este correo ya existe"
+                  />
+                )}
+                {message && (
+                  <Chip color="error" variant="outlined" label={message} />
+                )}
               </Grid>
               <Grid container spacing={2} justifyContent="center">
                 <Grid item xs={12} sm={6}>
@@ -129,12 +157,8 @@ export const RegisterModal = () => {
                   </Button>
                 </Grid>
                 <Grid item xs={12}>
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    onClick={onGoogleSignIn}
-                  >
-                    <GoogleIcon />
+                  <Button fullWidth onClick={onGoogleSignIn}>
+                    <GoogleIcon color="secondary" />
                     <Typography sx={{ ml: 2 }} color="secondary">
                       Regístrate con Google
                     </Typography>

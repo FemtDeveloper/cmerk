@@ -17,9 +17,7 @@ import {
   ListSubheader,
 } from "@mui/material";
 import {
-  EscalatorWarningOutlined,
-  FemaleOutlined,
-  MaleOutlined,
+  LoginIcon,
   PersonOutlineOutlined,
   SearchOutlined,
 } from "@mui/icons-material";
@@ -35,7 +33,7 @@ export const SideMenu = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { push, pathname } = useRouter();
   const { status } = useSession();
-  const { isMenuOpen, toggleSideMenu, toggleSigninModal, toggleRegisterModal } =
+  const { isMenuOpen, toggleSideMenu, toggleSigninModal } =
     useContext(UiContext);
   const { user } = useContext(AuthContext);
   let userName;
@@ -153,7 +151,7 @@ export const SideMenu = () => {
           ) : (
             <ListItem button onClick={toggleSigninModal}>
               <ListItemIcon>
-                <EscalatorWarningOutlined />
+                <LoginIcon />
               </ListItemIcon>
               <ListItemText primary={"Ingresar"} />
             </ListItem>
