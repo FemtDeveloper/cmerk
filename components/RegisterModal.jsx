@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
-import { getProviders, signIn, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import {
-  Alert,
   Backdrop,
   Box,
   Button,
@@ -9,7 +8,6 @@ import {
   Chip,
   Fade,
   Grid,
-  Link,
   Modal,
   TextField,
   Typography,
@@ -19,7 +17,6 @@ import { UiContext } from "context";
 import { useForm } from "hooks";
 import { tesloApi } from "api";
 import Router, { useRouter } from "next/router";
-import { redirect } from "next/dist/server/api-utils";
 
 const formData = { name: "", email: "", password: "" };
 

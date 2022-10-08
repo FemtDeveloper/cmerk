@@ -129,7 +129,7 @@ export const SigninModal = () => {
               </Grid>
               <Grid item xs={12} sx={{ my: 2 }}>
                 <TextField
-                  label="Comtraseña"
+                  label="Contraseña"
                   required
                   fullWidth
                   type="password"
