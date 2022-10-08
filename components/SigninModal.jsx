@@ -46,8 +46,10 @@ export const SigninModal = () => {
     const res = await signIn("credentials", options);
     setMessage(null);
     setTimeout(() => {
-      toggleSigninModal();
-      toggleSideMenu();
+      if (!res.error) {
+        toggleSigninModal();
+        toggleSideMenu();
+      }
     }, 1500);
     if (res?.error) {
       setMessage(res.error);

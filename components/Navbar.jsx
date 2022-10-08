@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import {
   ClearOutlined,
+  MenuOutlined,
   PersonOutlineOutlined,
   SearchOutlined,
 } from "@mui/icons-material";
@@ -190,8 +191,7 @@ export const Navbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
           <SearchOutlined sx={{ color: "info" }} />
         </IconButton>
         <IconButton onClick={toggleSideMenu}>
-          <PersonOutlineOutlined color="success" />
-          {/* <MenuOutlined sx={{ color: "info" }} /> */}
+          <MenuOutlined color="success" />
         </IconButton>
 
         {/* <Button

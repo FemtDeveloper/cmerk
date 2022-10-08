@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import NextLink from "next/link";
+import LoginIcon from "@mui/icons-material/Login";
 
 import {
   Box,
@@ -16,11 +17,7 @@ import {
   ListItemText,
   ListSubheader,
 } from "@mui/material";
-import {
-  LoginIcon,
-  PersonOutlineOutlined,
-  SearchOutlined,
-} from "@mui/icons-material";
+import { PersonOutlineOutlined, SearchOutlined } from "@mui/icons-material";
 
 import { useRouter } from "next/router";
 import { UiContext } from "context";
@@ -151,22 +148,14 @@ export const SideMenu = () => {
           ) : (
             <ListItem button onClick={toggleSigninModal}>
               <ListItemIcon>
-                <LoginIcon />
+                <LoginIcon sx={{ color: "#ff00ff" }} />{" "}
               </ListItemIcon>
               <ListItemText primary={"Ingresar"} />
             </ListItem>
           )}
 
           {isLogged && (
-            <ListItem
-              button
-              onClick={onLogout}
-              // sx={{
-              //   backgroundColor: "#7600a1",
-              //   color: "#fdd101",
-              //   padding: { sm: "5px 10px", md: "10px 20px" },
-              // }}
-            >
+            <ListItem button onClick={onLogout}>
               <ListItemText primary={"Cerrar Sesión"} />
             </ListItem>
           )}

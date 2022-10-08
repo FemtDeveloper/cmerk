@@ -169,7 +169,7 @@ const signInUser = async ({ password, user }) => {
   }
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
-    throw new Error("Contraseña invalida");
+    throw new Error("Usuario o Contraseña invalida");
   }
   // console.log(user);
   return user;
