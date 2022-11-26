@@ -5,10 +5,8 @@ import { prisma } from "@/lib/prisma";
 import { Typography } from "@mui/material";
 import { useRouter } from "next/router";
 
-const BrandPage = ({ products = null }) => {
+const GenderPage = ({ products = null }) => {
   const router = useRouter();
-
-  console.log(products[0].brand);
 
   if (!products) {
     return (
@@ -17,6 +15,12 @@ const BrandPage = ({ products = null }) => {
       </Typography>
     );
   }
+  const gender =
+    products.length === 0
+      ? "todos"
+      : products[0].gender === "mujer"
+      ? `${products[0].gender}es`
+      : `${products[0].gender}s`;
 
   if (router.isFallback) {
     return <FullScreenLoading />;
@@ -30,7 +34,7 @@ const BrandPage = ({ products = null }) => {
       title="Promoción Ropa de lacteos"
     >
       <Typography variant="h1" sx={{ textTransform: "capitalize", mb: 2 }}>
-        {products[0].brand}
+        {gender}
       </Typography>
       {products.length > 0 ? (
         <AllProducts products={products} />
@@ -41,6 +45,7 @@ const BrandPage = ({ products = null }) => {
   );
 };
 export async function getStaticPaths() {
+  // Get all products IDs from the database
   const products = await prisma.product.findMany({
     select: { brand: true },
   });
@@ -81,4 +86,4 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default BrandPage;
+export default GenderPage;

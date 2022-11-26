@@ -28,7 +28,7 @@ export async function getServerSideProps(context) {
 const Create = ({ user = null }) => {
   return (
     <AdminLayout title="Crea tu producto">
-      <Box sx={{ padding: { sm: "30px 10px 10px" }, mt: 6 }}>
+      <Box sx={{ padding: { sm: "30px 10px 10px" } }}>
         <Typography variant="h1">Agrega el producto</Typography>
         <Typography
           variant="body1"

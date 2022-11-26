@@ -40,7 +40,7 @@ const Carnes = ({ products = null }) => {
   );
 };
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
   //   let genderCapitalized = gender.charAt(0).toUpperCase() + gender.slice(1);
   // Get the current product from the database
 

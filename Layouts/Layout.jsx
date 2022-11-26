@@ -16,7 +16,7 @@ const Layout = ({
   pageDescription = "",
   isPromo = false,
 }) => {
-  // const {} = useContext(UiContext);
+  const {} = useContext(UiContext);
 
   return (
     <>
