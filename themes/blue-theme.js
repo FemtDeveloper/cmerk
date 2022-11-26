@@ -87,12 +87,12 @@ export const blueTheme = createTheme({
         root: {
           textTransform: "none",
           // boxShadow: "initial",
-          color: "#EBEBEB",
+          color: "#f5f5f5",
           border: "solid #46464605 1px",
           fontWeight: 700,
           ":hover": {
             color: "#4b72ff",
-            backgroundColor: "#0c3ff7",
+            backgroundColor: "#f5f5f5",
             borderRadius: 10,
             transition: "all 0.2s ease-in-out",
           },

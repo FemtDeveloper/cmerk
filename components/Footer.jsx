@@ -1,6 +1,5 @@
-import RestoreIcon from "@mui/icons-material/Restore";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ArchiveIcon from "@mui/icons-material/Archive";
+import PlaceIcon from "@mui/icons-material/Place";
+import SmartphoneIcon from "@mui/icons-material/Smartphone";
 import {
   AppBar,
   BottomNavigation,
@@ -11,6 +10,7 @@ import {
   ListItemText,
   Paper,
   Toolbar,
+  Typography,
 } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -21,19 +21,25 @@ export const Footer = () => {
     push(url);
   };
   return (
-    <Paper sx={{ bottom: 0, left: 0, right: 0, height: "50px" }} elevation={3}>
+    <Paper
+      sx={{ bottom: 0, left: 0, right: 0, height: "50px", display: "flex" }}
+      elevation={1}
+    >
       <ListItem sx={{ display: "flex", justifyContent: "center" }}>
+        <ListItemIcon>
+          <PlaceIcon color="primary" />
+        </ListItemIcon>
         <ListItemText color="secondary">
-          Dirección: Evergreen St 90210
+          Dirección: Carrera 18 # 15 -12{" "}
+          <Typography variant="h5"> Bucaramanga</Typography>
         </ListItemText>
+      </ListItem>
+      <ListItem sx={{ display: "flex", justifyContent: "center" }}>
+        <ListItemIcon>
+          <SmartphoneIcon color="primary" />
+        </ListItemIcon>
         <ListItemText color="secondary">Contáctanos: 3005456780</ListItemText>
       </ListItem>
-
-      {/* <BottomNavigation showLabels>
-        <BottomNavigationAction label="Contactanos" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Archive" icon={<ArchiveIcon />} />
-      </BottomNavigation> */}
     </Paper>
   );
 };
