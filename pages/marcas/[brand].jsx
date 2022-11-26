@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 const BrandPage = ({ products = null }) => {
   const router = useRouter();
 
+  console.log(products[0].brand);
+
   if (!products) {
     return (
       <Typography variant="h1">
@@ -53,6 +55,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const brand = params.brand;
+
+  //   let genderCapitalized = gender.charAt(0).toUpperCase() + gender.slice(1);
+  // Get the current product from the database
 
   const products = await prisma.product.findMany({
     where: { brand },
