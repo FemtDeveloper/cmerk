@@ -26,6 +26,7 @@ const saveFile = async (file) => {
   // fs.unlinkSync( file.filepath ); // elimina
   // return;
   const { secure_url } = await cloudinary.uploader.upload(file.filepath);
+  console.log({ secure_url });
   return secure_url;
 };
 
