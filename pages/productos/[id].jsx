@@ -1,9 +1,6 @@
-import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import Layout from "Layouts/Layout";
 import { prisma } from "@/lib/prisma";
-import axios from "axios";
 import { Box, Card, Grid, Typography } from "@mui/material";
 import { ProductSlideshow } from "@/components/ProductSlideShow";
 import { FullScreenLoading } from "@/components/FullScreenLoading";
@@ -11,23 +8,6 @@ import { FullScreenLoading } from "@/components/FullScreenLoading";
 const SingleProduct = (product = null) => {
   const router = useRouter();
 
-  const { data: session } = useSession();
-
-  const [isOwner, setIsOwner] = useState(false);
-  const [deleting, setDeleting] = useState(false);
-
-  // useEffect(() => {
-  //   (async () => {
-  //     if (session?.user) {
-  //       try {
-  //         const owner = await axios.get(`/api/products/${product.id}/owner`);
-  //         setIsOwner(owner?.id === session.user.id);
-  //       } catch (e) {
-  //         setIsOwner(false);
-  //       }
-  //     }
-  //   })();
-  // }, [session?.user, product.id]);
   const myTitle = `C-Merk ${product.title}`;
 
   if (router.isFallback) {

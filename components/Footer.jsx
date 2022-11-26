@@ -1,18 +1,12 @@
 import PlaceIcon from "@mui/icons-material/Place";
 import SmartphoneIcon from "@mui/icons-material/Smartphone";
 import {
-  AppBar,
-  BottomNavigation,
-  BottomNavigationAction,
-  Grid,
   ListItem,
   ListItemIcon,
   ListItemText,
   Paper,
-  Toolbar,
   Typography,
 } from "@mui/material";
-import Image from "next/image";
 import { useRouter } from "next/router";
 
 export const Footer = () => {
@@ -22,7 +16,14 @@ export const Footer = () => {
   };
   return (
     <Paper
-      sx={{ bottom: 0, left: 0, right: 0, height: "50px", display: "flex" }}
+      sx={{
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: "50px",
+        display: "flex",
+        backgroundColor: "#e9e9e9",
+      }}
       elevation={1}
     >
       <ListItem sx={{ display: "flex", justifyContent: "center" }}>
@@ -30,8 +31,8 @@ export const Footer = () => {
           <PlaceIcon color="primary" />
         </ListItemIcon>
         <ListItemText color="secondary">
-          Dirección: Carrera 18 # 15 -12{" "}
-          <Typography variant="h5"> Bucaramanga</Typography>
+          Dirección: Carrera 18 # 15 -12 (Bucaramanga)
+          <Typography variant="h5"> </Typography>
         </ListItemText>
       </ListItem>
       <ListItem sx={{ display: "flex", justifyContent: "center" }}>
