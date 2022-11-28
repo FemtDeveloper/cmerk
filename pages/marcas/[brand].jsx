@@ -15,16 +15,6 @@ const GenderPage = ({ products = null }) => {
       </Typography>
     );
   }
-  const gender =
-    products.length === 0
-      ? "todos"
-      : products[0].gender === "mujer"
-      ? `${products[0].gender}es`
-      : `${products[0].gender}s`;
-
-  if (router.isFallback) {
-    return <FullScreenLoading />;
-  }
 
   return (
     <Layout
@@ -34,7 +24,7 @@ const GenderPage = ({ products = null }) => {
       title="Promoción Ropa de lacteos"
     >
       <Typography variant="h1" sx={{ textTransform: "capitalize", mb: 2 }}>
-        {gender}
+        {/* {products[0].brand} */}
       </Typography>
       {products.length > 0 ? (
         <AllProducts products={products} />
@@ -44,21 +34,21 @@ const GenderPage = ({ products = null }) => {
     </Layout>
   );
 };
-export async function getStaticPaths() {
-  // Get all products IDs from the database
-  const products = await prisma.product.findMany({
-    select: { brand: true },
-  });
+// export async function getStaticPaths() {
+//   // Get all products IDs from the database
+//   const products = await prisma.product.findMany({
+//     select: { brand: true },
+//   });
 
-  return {
-    paths: products.map((product) => ({
-      params: { brand: product.brand },
-    })),
-    fallback: true,
-  };
-}
+//   return {
+//     paths: products.map((product) => ({
+//       params: { brand: product.brand },
+//     })),
+//     fallback: true,
+//   };
+// }
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const brand = params.brand;
 
   //   let genderCapitalized = gender.charAt(0).toUpperCase() + gender.slice(1);
@@ -67,6 +57,8 @@ export async function getStaticProps({ params }) {
   const products = await prisma.product.findMany({
     where: { brand },
   });
+
+  console.log({ products });
   if (!products) {
     return {
       notFound: true,

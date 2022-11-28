@@ -40,7 +40,7 @@ const Lacteos = ({ products = null }) => {
   );
 };
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   //   let genderCapitalized = gender.charAt(0).toUpperCase() + gender.slice(1);
   // Get the current product from the database
 

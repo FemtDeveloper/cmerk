@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import CardProduct from "@/components/CardProduct";
 import { Grid } from "@mui/material";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   //   let genderCapitalized = gender.charAt(0).toUpperCase() + gender.slice(1);
   // Get the current product from the database
 
