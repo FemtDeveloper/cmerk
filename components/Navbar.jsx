@@ -57,7 +57,7 @@ export const Navbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
                 display: { xs: "flex", md: "none" },
               }}
             >
-              C-Merca
+              C- <span style={{ color: "#ffec31" }}>Merk</span>
             </Typography>
             <Typography
               variant="h2"
@@ -71,7 +71,7 @@ export const Navbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
               variant="h3"
               color="info"
             >
-              Merca
+              Merk
             </Typography>
           </Link>
         </NextLink>

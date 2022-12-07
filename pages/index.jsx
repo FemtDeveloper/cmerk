@@ -26,7 +26,7 @@ export default function Home({ products = [] }) {
   }
 
   return (
-    <Layout title="C-Merca">
+    <Layout title="C-Merk">
       <Typography variant="h1" component="h1">
         Tienda
       </Typography>

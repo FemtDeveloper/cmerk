@@ -56,7 +56,7 @@ export const AdminNavbar = (gender = "", isMenuOpen, setIsMenuOpen) => {
                 display: { xs: "flex", sm: "flex", md: "none" },
               }}
             >
-              C-Merca
+              C-Merk
             </Typography>
             <Typography
               variant="h2"

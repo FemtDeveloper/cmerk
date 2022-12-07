@@ -1,18 +1,12 @@
 import PlaceIcon from "@mui/icons-material/Place";
 import SmartphoneIcon from "@mui/icons-material/Smartphone";
 import {
-  AppBar,
-  BottomNavigation,
-  BottomNavigationAction,
-  Grid,
   ListItem,
   ListItemIcon,
   ListItemText,
   Paper,
-  Toolbar,
   Typography,
 } from "@mui/material";
-import Image from "next/image";
 import { useRouter } from "next/router";
 
 export const Footer = () => {
@@ -22,7 +16,15 @@ export const Footer = () => {
   };
   return (
     <Paper
-      sx={{ bottom: 0, left: 0, right: 0, height: "50px", display: "flex" }}
+      sx={{
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: "50px",
+        display: "flex",
+        flexWrap: "wrap",
+        backgroundColor: "red",
+      }}
       elevation={1}
     >
       <ListItem sx={{ display: "flex", justifyContent: "center" }}>
