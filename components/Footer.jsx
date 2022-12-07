@@ -20,14 +20,18 @@ export const Footer = () => {
         bottom: 0,
         left: 0,
         right: 0,
-        height: "50px",
         display: "flex",
         flexWrap: "wrap",
-        backgroundColor: "red",
       }}
       elevation={1}
     >
-      <ListItem sx={{ display: "flex", justifyContent: "center" }}>
+      <ListItem
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          width: { xs: "100%", sm: "50%" },
+        }}
+      >
         <ListItemIcon>
           <PlaceIcon color="primary" />
         </ListItemIcon>
@@ -36,7 +40,13 @@ export const Footer = () => {
           <Typography variant="h5"> Bucaramanga</Typography>
         </ListItemText>
       </ListItem>
-      <ListItem sx={{ display: "flex", justifyContent: "center" }}>
+      <ListItem
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          width: { xs: "100%", sm: "50%" },
+        }}
+      >
         <ListItemIcon>
           <SmartphoneIcon color="primary" />
         </ListItemIcon>

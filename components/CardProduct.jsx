@@ -138,14 +138,14 @@ const CardProduct = ({
             position: "absolute",
             right: "2px",
             cursor: "pointer",
-            zIndex: 10,
+            // zIndex: 1,
           }}
           onClick={onFavorite}
         >
           <FavoriteOutlined />
         </IconButton>
 
-        <List sx={{ paddingX: "20px" }}>
+        <List sx={{ marginRight: "25px", marginLeft: "15px" }}>
           <Typography variant="h2">{title}</Typography>
 
           {hasPromo ? (
