@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Button, Modal, TextField, Typography } from "@mui/material";
-import { tesloApi } from "api";
+import { miApi } from "api";
 import Image from "next/image";
 
 export const ModalPromo = ({ isOpen, setIsModalOpen, price, id, image }) => {
@@ -11,7 +11,7 @@ export const ModalPromo = ({ isOpen, setIsModalOpen, price, id, image }) => {
   };
   const updatingPromo = async (id) => {
     try {
-      const { data } = await tesloApi({
+      const { data } = await miApi({
         url: "/edit/add-promo",
         method: "PUT",
         data: { newPrice, id },

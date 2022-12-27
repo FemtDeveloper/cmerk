@@ -15,7 +15,7 @@ import {
   Typography,
 } from "@mui/material";
 import { FavoriteOutlined } from "@mui/icons-material";
-import { tesloApi } from "api";
+import { miApi } from "api";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
@@ -60,7 +60,7 @@ const CardProduct = ({
     setIsFavorite(!isFavorite);
     e.preventDefault();
     try {
-      const { data } = await tesloApi({
+      const { data } = await miApi({
         url: "/products",
         method: "PUT", // si tenemos un _id, entonces actualizar, si no crear
         data: { productId: id },
@@ -72,7 +72,7 @@ const CardProduct = ({
   const toDelete = { id, images };
 
   // const onDeleteProduct = async () => {
-  //   const { data } = await tesloApi({
+  //   const { data } = await miApi({
   //     url: "/edit/products",
   //     method: "DELETE",
   //     data: toDelete,

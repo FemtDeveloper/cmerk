@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import { tesloApi } from "api";
+import { miApi } from "api";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -25,7 +25,7 @@ export const ProductToEdit = ({
   const toDelete = { id, images };
   const onDeleteProduct = async (id) => {
     dispatch(startDeletingProduct(id));
-    const { data } = await tesloApi({
+    const { data } = await miApi({
       url: "/edit/products",
       method: "DELETE",
       data: toDelete,

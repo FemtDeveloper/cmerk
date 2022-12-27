@@ -1,10 +1,10 @@
-import { tesloApi } from "api";
+import { miApi } from "api";
 import { setError, setFavorites, setPhoneNumber, setRole } from "./userSlice";
 
 export const getFavoriteProducts = () => {
   return async (dispatch) => {
     try {
-      const { data } = await tesloApi("/get-favorites");
+      const { data } = await miApi("/get-favorites");
       const { favoriteProducts, phoneNumber, role } = data;
 
       dispatch(setFavorites(favoriteProducts));

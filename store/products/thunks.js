@@ -1,10 +1,10 @@
-import { tesloApi } from "api";
+import { miApi } from "api";
 import { deleteProduct, setAllProducts, setError } from "./productsSlice";
 
 export const getAllProducts = () => {
   return async (dispatch) => {
     try {
-      const { data } = await tesloApi("/get-all-products");
+      const { data } = await miApi("/get-all-products");
       const products = data.products;
       await dispatch(setAllProducts(products));
     } catch (error) {

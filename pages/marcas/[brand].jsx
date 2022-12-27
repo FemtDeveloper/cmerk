@@ -19,7 +19,7 @@ const GenderPage = ({ products = null }) => {
   return (
     <Layout
       pageDescription={
-        "Encuentra promociones en todo tipo de ropa de lacteos, jeans, camisas, camisetas"
+        "Encuentra promociones en todo tipo  de lacteos, jeans, camisas, camisetas"
       }
       title="Promoción Ropa de lacteos"
     >

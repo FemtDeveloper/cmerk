@@ -15,7 +15,7 @@ import {
 import GoogleIcon from "@mui/icons-material/Google";
 import { UiContext } from "context";
 import { useForm } from "hooks";
-import { tesloApi } from "api";
+import { miApi } from "api";
 import Router, { useRouter } from "next/router";
 
 const formData = { name: "", email: "", password: "" };
@@ -33,7 +33,7 @@ export const RegisterModal = () => {
     e.preventDefault();
 
     try {
-      const res = await tesloApi.post("/register", formState);
+      const res = await miApi.post("/register", formState);
       setMessage(res.data.message);
       setTimeout(() => {
         setMessage(null);

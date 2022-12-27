@@ -22,7 +22,7 @@ import {
 } from "@mui/material";
 import { SaveOutlined, UploadOutlined } from "@mui/icons-material";
 
-import { tesloApi } from "api";
+import { miApi } from "api";
 import { revalidatePage } from "helpers";
 
 const categorias = [
@@ -74,7 +74,7 @@ const EditingForm = ({ product }) => {
       for (const file of target.files) {
         const formData = new FormData();
         formData.append("file", file);
-        const { data } = await tesloApi.post("/image-upload2", formData);
+        const { data } = await miApi.post("/image-upload2", formData);
         setValue("images", [...getValues("images"), data.message], {
           shouldValidate: true,
         });
@@ -89,7 +89,7 @@ const EditingForm = ({ product }) => {
     e.preventDefault();
 
     try {
-      const { data } = await tesloApi({
+      const { data } = await miApi({
         url: "/edit/products",
         method: "PUT", // si tenemos un _id, entonces actualizar, si no crear
         data: form,
@@ -117,7 +117,7 @@ const EditingForm = ({ product }) => {
   };
 
   const onDeleteImage = async () => {
-    await tesloApi({
+    await miApi({
       url: "/edit/delete-image",
       method: "PUT",
       data: product,

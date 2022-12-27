@@ -7,7 +7,7 @@ import axios from "axios";
 
 import { AuthContext, authReducer } from ".";
 
-import { tesloApi } from "../../api";
+import { miApi } from "../../api";
 
 const AUTH_INITIAL_STATE = {
   isLoggedIn: false,
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
   //   }
 
   //   try {
-  //     const { data } = await tesloApi.get("/user/validate-token");
+  //     const { data } = await miApi.get("/user/validate-token");
   //     const { token, user } = data;
   //     Cookies.set("token", token);
   //     dispatch({ type: "[Auth] - Login", payload: user });
@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
   //   password: string
   // ): Promise<boolean> => {
   //   try {
-  //     const { data } = await tesloApi.post("/user/login", { email, password });
+  //     const { data } = await miApi.post("/user/login", { email, password });
   //     const { token, user } = data;
   //     Cookies.set("token", token);
   //     dispatch({ type: "[Auth] - Login", payload: user });
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
   //   password: string
   // ): Promise<{ hasError: boolean, message?: string }> => {
   //   try {
-  //     const { data } = await tesloApi.post("/user/register", {
+  //     const { data } = await miApi.post("/user/register", {
   //       name,
   //       email,
   //       password,
